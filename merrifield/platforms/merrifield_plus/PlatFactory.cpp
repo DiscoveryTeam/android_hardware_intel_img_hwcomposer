@@ -77,8 +77,12 @@ IDisplayDevice* PlatFactory::createDisplayDevice(int disp)
         case IDisplayDevice::DEVICE_VIRTUAL:
             return new VirtualDevice(hwc);
         default:
+#ifdef ASUS_ZENFONE2_LP_BLOBS
+	        return new VirtualDevice(hwc);
+#else
             ETRACE("invalid display device %d", disp);
             return NULL;
+#endif
     }
 }
 
